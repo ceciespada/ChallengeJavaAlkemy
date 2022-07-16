@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,8 +19,21 @@ public class GeneroEntity {
     private String nombre;
     @Column
     private String imagen;
-    @JoinColumn
-    private List<PeliculaEntity> peliculas;
+
+    @ManyToMany(mappedBy = "genero",cascade = CascadeType.ALL)
+    private List<PeliculaEntity> peliculasList = new ArrayList<>();
+
+    public void addPelicula(PeliculaEntity pelicula){
+        this.peliculasList.add(pelicula);
+
+    }
+
+    public void removePelicula(PeliculaEntity pelicula){
+        this.peliculasList.remove(pelicula);
+    }
+
+
+
 
 
 
