@@ -26,7 +26,7 @@ public class PeliculaEntity {
     @DateTimeFormat(pattern ="yyyy/MM/dd")
     private LocalDate fecha;
     @Column
-    private float calificacion;
+    private Float calificacion;
 
     @ManyToMany(
             cascade ={
@@ -48,7 +48,7 @@ public class PeliculaEntity {
             name = "genero_pelicula",
             joinColumns = @JoinColumn(name="pelicula_id"),
             inverseJoinColumns = @JoinColumn(name="genero_id"))
-    private Set<GeneroEntity> generoSet = new HashSet<>();
+    private  Set<GeneroEntity> generosSet = new HashSet<>();
 
 
 

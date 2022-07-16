@@ -22,12 +22,12 @@ public class PersonajeEntity {
     @Column
     private String nombre;
     @Column
-    private int edad;
+    private Integer edad;
     @Column
-    private float peso;
+    private Float peso;
     @Column
     private String historia;
-    @ManyToMany(mappedBy = "personaje",cascade = CascadeType.ALL)
+    /*@ManyToMany(mappedBy = "personaje",cascade = CascadeType.ALL)
     private List<PeliculaEntity> peliculasList = new ArrayList<>();
 
     public void addPelicula(PeliculaEntity pelicula){
@@ -37,15 +37,7 @@ public class PersonajeEntity {
 
     public void removePelicula(PeliculaEntity pelicula){
         this.peliculasList.remove(pelicula);
-    }
-
-
-
-
-
-
-
-
+    }*/
 
 
 

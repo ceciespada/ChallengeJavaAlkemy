@@ -20,7 +20,9 @@ public class GeneroEntity {
     @Column
     private String imagen;
 
-    @ManyToMany(mappedBy = "genero",cascade = CascadeType.ALL)
+   /* private PeliculaEntity pelicula;
+
+  @ManyToMany(mappedBy = "genero",cascade = CascadeType.ALL)
     private List<PeliculaEntity> peliculasList = new ArrayList<>();
 
     public void addPelicula(PeliculaEntity pelicula){
@@ -30,7 +32,7 @@ public class GeneroEntity {
 
     public void removePelicula(PeliculaEntity pelicula){
         this.peliculasList.remove(pelicula);
-    }
+    }*/
 
 
 
