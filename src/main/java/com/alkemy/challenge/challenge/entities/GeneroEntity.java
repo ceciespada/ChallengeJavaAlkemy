@@ -5,7 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="genero")
@@ -20,10 +22,10 @@ public class GeneroEntity {
     @Column
     private String imagen;
 
-   /* private PeliculaEntity pelicula;
 
-  @ManyToMany(mappedBy = "genero",cascade = CascadeType.ALL)
-    private List<PeliculaEntity> peliculasList = new ArrayList<>();
+ /*  @ManyToMany(mappedBy = "genero")
+    private Set<PeliculaEntity> peliculasSet = new HashSet<>();
+
 
     public void addPelicula(PeliculaEntity pelicula){
         this.peliculasList.add(pelicula);
@@ -33,13 +35,6 @@ public class GeneroEntity {
     public void removePelicula(PeliculaEntity pelicula){
         this.peliculasList.remove(pelicula);
     }*/
-
-
-
-
-
-
-
 
 
 }

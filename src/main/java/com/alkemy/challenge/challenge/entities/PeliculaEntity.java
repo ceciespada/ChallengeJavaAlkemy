@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -34,7 +35,7 @@ public class PeliculaEntity {
                     CascadeType.MERGE,
             })
     @JoinTable(
-            name = "personaje_pelicula",
+            name = "pelicula_personaje",
             joinColumns = @JoinColumn(name="pelicula_id"),
             inverseJoinColumns = @JoinColumn(name="personaje_id"))
     private Set<PersonajeEntity> personajesSet = new HashSet<>();
@@ -45,10 +46,10 @@ public class PeliculaEntity {
                     CascadeType.MERGE,
             })
     @JoinTable(
-            name = "genero_pelicula",
+            name = "pelicula_genero",
             joinColumns = @JoinColumn(name="pelicula_id"),
             inverseJoinColumns = @JoinColumn(name="genero_id"))
-    private  Set<GeneroEntity> generosSet = new HashSet<>();
+    private Set<GeneroEntity> generosSet = new HashSet<>();
 
 
 
