@@ -1,5 +1,6 @@
 package com.alkemy.challenge.challenge.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,19 +23,15 @@ public class GeneroEntity {
     @Column
     private String imagen;
 
-
- /*  @ManyToMany(mappedBy = "genero")
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "generosSet")
+    @JsonIgnore
     private Set<PeliculaEntity> peliculasSet = new HashSet<>();
 
-
-    public void addPelicula(PeliculaEntity pelicula){
-        this.peliculasList.add(pelicula);
-
+    public GeneroEntity() {
     }
-
-    public void removePelicula(PeliculaEntity pelicula){
-        this.peliculasList.remove(pelicula);
-    }*/
-
-
 }

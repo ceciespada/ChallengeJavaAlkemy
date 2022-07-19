@@ -40,7 +40,7 @@ public class PeliculaEntity {
             inverseJoinColumns = @JoinColumn(name="personaje_id"))
     private Set<PersonajeEntity> personajesSet = new HashSet<>();
 
-    @ManyToMany(
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade ={
                     CascadeType.PERSIST,
                     CascadeType.MERGE,
@@ -51,7 +51,13 @@ public class PeliculaEntity {
             inverseJoinColumns = @JoinColumn(name="genero_id"))
     private Set<GeneroEntity> generosSet = new HashSet<>();
 
+    public PeliculaEntity() {
+    }
 
-
-
+    public PeliculaEntity(String imagen, String titulo, LocalDate fecha, Float calificacion) {
+        this.imagen = imagen;
+        this.titulo = titulo;
+        this.fecha = fecha;
+        this.calificacion = calificacion;
+    }
 }
