@@ -24,10 +24,19 @@ public class GeneroController {
         return ResponseEntity.ok().body(generos);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<GeneroDTO>buscarGeneroXid(@PathVariable Long id){
+       GeneroDTO generoDTO = generoService.buscarGeneroXid(id);
+        return ResponseEntity.ok(generoDTO);
+    }
+
     @PostMapping
     public ResponseEntity<GeneroDTO>guardarGenero(@RequestBody GeneroDTO genero){
         GeneroDTO generoGuardado = generoService.guardarGenero(genero);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(generoGuardado);
     }
+
+
+
 }

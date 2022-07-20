@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="genero")
+@Table(name="generos")
 @Getter
 @Setter
 @SQLDelete(sql = "UPDATE genero SET deleted = true WHERE id=?")
@@ -27,7 +27,7 @@ public class GeneroEntity {
     @Column
     private boolean deleted = Boolean.FALSE;
 
-    @ManyToMany(fetch = FetchType.EAGER,
+    @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE

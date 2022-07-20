@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="pelicula")
+@Table(name="peliculas")
 @Getter
 @Setter
 @SQLDelete(sql = "UPDATE pelicula SET deleted = true WHERE id=?")
@@ -33,26 +33,26 @@ public class PeliculaEntity {
     @Column
     private boolean deleted = Boolean.FALSE;
 
-    @ManyToMany(
+    @ManyToMany(fetch = FetchType.LAZY,
             cascade ={
                     CascadeType.PERSIST,
                     CascadeType.MERGE,
             })
     @JoinTable(
-            name = "pelicula_personaje",
-            joinColumns = @JoinColumn(name="pelicula_id"),
-            inverseJoinColumns = @JoinColumn(name="personaje_id"))
+            name = "peliculas_personajes",
+            joinColumns = @JoinColumn(name="peliculas_id"),
+            inverseJoinColumns = @JoinColumn(name="personajes_id"))
     private Set<PersonajeEntity> personajesSet = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER,
+    @ManyToMany(fetch = FetchType.LAZY,
             cascade ={
                     CascadeType.PERSIST,
                     CascadeType.MERGE,
             })
     @JoinTable(
-            name = "pelicula_genero",
-            joinColumns = @JoinColumn(name="pelicula_id"),
-            inverseJoinColumns = @JoinColumn(name="genero_id"))
+            name = "peliculas_generos",
+            joinColumns = @JoinColumn(name="peliculas_id"),
+            inverseJoinColumns = @JoinColumn(name="generos_id"))
     private Set<GeneroEntity> generosSet = new HashSet<>();
 
     public PeliculaEntity() {

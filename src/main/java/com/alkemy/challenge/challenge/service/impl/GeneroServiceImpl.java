@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GeneroServiceImpl implements IGeneroService {
@@ -20,18 +21,35 @@ public class GeneroServiceImpl implements IGeneroService {
     private GeneroRepository generoRepository;
 
 
-    public GeneroDTO guardarGenero (GeneroDTO dto){
-        GeneroEntity entity = generoMapper.generoDTO2ENtity(dto);
+    public GeneroDTO guardarGenero (GeneroDTO generoDTO){
+        GeneroEntity entity = generoMapper.generoDTO2ENtity(generoDTO);
         GeneroEntity generoGuardado = generoRepository.save(entity);
         GeneroDTO result = generoMapper.generoEntity2DTO(generoGuardado);
-        System.out.println("Guardar Genero");
+        //System.out.println("Guardar Genero");
         return result;
     }
 
 
     public List<GeneroDTO> listarTodosGeneros() {
         List<GeneroEntity> generoEntities = generoRepository.findAll();
-        List<GeneroDTO> result = generoMapper.generoEntityList2DTOList(generoEntities);
-        return result;
+        List<GeneroDTO> generoDTOs = generoMapper.generoEntityList2DTOList(generoEntities);
+        return generoDTOs;
     }
+
+     public void eliminarGenero(GeneroDTO dto) {
+        GeneroEntity entity = generoMapper.generoDTO2ENtity(dto);
+        generoRepository.delete(entity);
+    }
+
+
+   public GeneroDTO buscarGeneroXid(Long id) {
+       Optional<GeneroEntity> generoOptionalEntity = generoRepository.findById(id);
+       GeneroEntity generoEncontrado = generoOptionalEntity.get();
+       GeneroDTO result = generoMapper.generoEntity2DTO(generoEncontrado);
+       return result;
+    }
+
+
+
+
 }

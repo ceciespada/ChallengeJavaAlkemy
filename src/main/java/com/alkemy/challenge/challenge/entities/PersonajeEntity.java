@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="personaje")
+@Table(name="personajes")
 @Getter
 @Setter
 @SQLDelete(sql = "UPDATE personaje SET deleted = true WHERE id=?")
@@ -36,7 +36,7 @@ public class PersonajeEntity {
     private boolean deleted = Boolean.FALSE;
 
 
-    @ManyToMany(fetch = FetchType.EAGER,
+    @ManyToMany(fetch = FetchType.LAZY,
       cascade = {
           CascadeType.PERSIST,
           CascadeType.MERGE
