@@ -15,13 +15,15 @@ import java.util.Set;
 @Table(name="personajes")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE personaje SET deleted = true WHERE id=?")
+@SQLDelete(sql = "UPDATE personajes SET deleted = true WHERE id_personaje=?")
 @Where(clause = "deleted=false")
 public class PersonajeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @SequenceGenerator(name="personajes_sequence",sequenceName = "personajes_sequence",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "personajes_sequence")
+    @Column(name="id_personaje")
+    private Long idPersonaje;
     @Column
     private String imagen;
     @Column
@@ -48,4 +50,23 @@ public class PersonajeEntity {
 
     public PersonajeEntity() {
     }
+
+    public PersonajeEntity(String imagen, String nombre, Integer edad, Float peso, String historia, boolean deleted, Set<PeliculaEntity> peliculasSet) {
+        this.imagen = imagen;
+        this.nombre = nombre;
+        this.edad = edad;
+        this.peso = peso;
+        this.historia = historia;
+        this.deleted = deleted;
+        this.peliculasSet = peliculasSet;
+    }
+
+    public void agregarPelicula(PeliculaEntity peliculaEntity){
+        peliculasSet.add(peliculaEntity);
+    }
+
+    public void eliminarPelicula(PeliculaEntity peliculaEntity){
+        peliculasSet.remove(peliculaEntity);
+    }
+
 }
